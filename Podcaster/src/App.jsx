@@ -1,4 +1,4 @@
-import './App.css'
+//import './App.css'
 
 import {
   BrowserRouter,
@@ -8,10 +8,11 @@ import {
 import { PodcastList } from './components/PodcastList';
 
 
+
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
+       <Routes>
         <Route exact path="/" element={<PodcastList/>} />
        </Routes>
     </BrowserRouter>

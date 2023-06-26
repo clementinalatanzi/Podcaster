@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Podcast } from './Podcast';
+import { PodcastUI } from './PodcastUI';
 import usePodcastFilter from '../hooks/usePodcastFilter';
 import usePodcastsData from '../hooks/usePodcastsData';
 import { fetchTop100Podcasts } from '../services/itunesClient';
@@ -12,10 +12,10 @@ export function PodcastList() {
 
   const fieldsToFilter = ['title', 'author']; 
   const { filteredData, handleFilterTextChange, filterText } = usePodcastFilter(podcasdList, fieldsToFilter);
-
-
+  
   return (
     <>
+          
       <div className='filter-container'>
         <input
           type="text"
@@ -34,9 +34,9 @@ export function PodcastList() {
                                 state={ { urlImage: podcast.urlImage, 
                                           title: podcast.title, 
                                           description: podcast.description, 
-                                          route: `/podcast/${podcast.id}`
+                                          id: podcast.id
                                      } }>
-              <Podcast
+              <PodcastUI
                 id={podcast.id}
                 title={podcast.title}
                 author={podcast.author}

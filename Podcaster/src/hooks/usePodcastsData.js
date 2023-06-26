@@ -1,42 +1,42 @@
 import { useEffect, useState } from 'react';
-import {mappingTop100Podcast}  from '../utils/Podcast/mappingTop100Podcast';
-import { calculateDateDifference } from '../utils/Date/dateUtils';
+import { mappingTop100Podcast } from '../services/utils/mappingTop100Podcast';
+import { setDataLocalStorage } from '../services/utils/setDataLocalStorage';
+import { getDataLocalStorage } from '../services/utils/getDataLocalStorage';
 
 
 const usePodcastsData = (storageKey, fetchDataFunction, ...fetchDataParams) => {
-  const [podcasts, setPodcasts] = useState([]);
-  useEffect(() => {
-    
-    const loadPodcasts = async () => {
-      const storedPodcasts = localStorage.getItem(storageKey);
-      const parsedPodcasts = storedPodcasts ? JSON.parse(storedPodcasts) : null;
-      
-      const lastRequestTime = localStorage.getItem('lastRequestTime');
-      const currentTime = new Date().getTime();
-   
-      if (parsedPodcasts && 
-          lastRequestTime &&
-          calculateDateDifference(currentTime,lastRequestTime)) {
-        // Los podcasts están almacenados y no ha pasado un día desde la última solicitud
-        setPodcasts(parsedPodcasts);
-      } else {
-        try {
-          const data = await fetchDataFunction(...fetchDataParams);
-          const mappingData= mappingTop100Podcast(data.feed.entry)
-          setPodcasts(mappingData);
-          localStorage.setItem(storageKey, JSON.stringify(mappingData));
-          localStorage.setItem('lastRequestTime', currentTime);
-          console.log('Los datos han sido actualizados');
-        } catch (error) {
-          console.error('Error al cargar los podcasts:', error);
-        }
-      }
-    };
+    const [podcasts, setPodcasts] = useState([]);
+    useEffect(() => {
 
-    loadPodcasts();
-  }, [storageKey, fetchDataFunction, ...fetchDataParams]);
+        const loadPodcasts = async () => {
+            const timeKey = 'lastRequestTime'
+            const parsedPodcasts = getDataLocalStorage(storageKey, timeKey)
+            if (parsedPodcasts) {
+                setPodcasts(parsedPodcasts)
+            } else {
+                try {
+                    const mappingData = await getDataOfApi(fetchDataFunction, fetchDataParams)
+                    setPodcasts(mappingData);
+                    setDataLocalStorage(storageKey,mappingData,timeKey)
 
-  return podcasts;
+                } catch (error) {
+                    console.error('Error al cargar los podcasts:', error);
+                }
+            }
+        };
+
+        loadPodcasts();
+    }, [storageKey, fetchDataFunction, ...fetchDataParams]);
+
+    return podcasts;
 };
+
+async function getDataOfApi(fetchDataFunction, fetchDataParams) {
+
+    const data = await fetchDataFunction(...fetchDataParams);
+    const mappingData = mappingTop100Podcast(data.feed.entry)
+    console.log('Los datos han sido actualizados');
+    return mappingData
+}
 
 export default usePodcastsData;

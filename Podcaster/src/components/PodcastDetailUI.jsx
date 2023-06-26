@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const PodcastDetailUI = ({ episodes, urlImage, title, description, id }) => {
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr' }}>
+    <div>
       <div>
         <h1 className='border-container '> EPISODES: {episodes.length}</h1>
         <div className='border-container'>

@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import SummaryPodcast from './SummaryPodcastUI';
 import PodcastEpisodes from './PodcastDetailUI';
 import { fetchPodcastData } from '../services/fetchPodcastsData';
+import './PodcastDetail.css'
 
 export function PodcastDetail({setIsLoading}) {
 
@@ -34,10 +35,14 @@ export function PodcastDetail({setIsLoading}) {
 
   return (
     podcastDetail ? (
-      <>
-        <SummaryPodcast urlImage={urlImage} title={title} description={description} id={id}/>
-        <PodcastEpisodes episodes={podcastDetail.episodes} urlImage={urlImage} title={title} description={description} id={id}/>
-      </>) :
+      <div className='podcast-detail-container'>
+        <div className= 'summary-podcast'>
+        <SummaryPodcast  urlImage={urlImage} title={title} description={description} id={id} />
+        </div>
+        <div className='podcast-episodes'>
+        <PodcastEpisodes episodes={podcastDetail.episodes} urlImage={urlImage} title={title} description={description} id={id} />
+        </div>
+      </div>) :
       <div></div>
 
   )

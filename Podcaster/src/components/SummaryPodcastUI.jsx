@@ -6,7 +6,7 @@ function SummaryPodcast({ urlImage, title, description, id }) {
   const route = `/podcast/${id}`
   console.log("route", route)
   return (
-    <div className='summary'>
+    <div className='border-container'>
       <Link to={route}
         state={{
           urlImage: urlImage,

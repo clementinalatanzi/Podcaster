@@ -1,5 +1,6 @@
 import { useLocation, useParams } from 'react-router-dom';
 import SummaryPodcast from './SummaryPodcastUI';
+import './Episode.css'
 
 export function Episode({ setIsLoading }) {
 
@@ -15,7 +16,7 @@ export function Episode({ setIsLoading }) {
     return (
         <>
             <div className='episode-container'>
-                <div>
+                <div className='summary-podcast'>
                     <SummaryPodcast title={title} description={description} urlImage={urlImage} id={id} />
                 </div>
                 < div className='container-border'>

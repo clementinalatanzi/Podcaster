@@ -4,7 +4,7 @@ import usePodcastFilter from '../hooks/usePodcastFilter';
 import usePodcastsData from '../hooks/usePodcastsData';
 import { fetchTop100Podcasts } from '../services/itunesClient';
 import { Link } from 'react-router-dom';
-
+import './PodcastList.css'
 
 export function PodcastList({setIsLoading}) {
  
@@ -26,11 +26,10 @@ export function PodcastList({setIsLoading}) {
           placeholder="Buscar podcasts..."
         />
       </div>
-      <ul>
+      <div className="podcast-grid">
         {filteredData.map((podcast) => (
           <section key={podcast.id} data-testid="podcast">
-            <div className="section-overlay"></div>
-            <div className="section-container">
+            <div className="border-container">
             <Link to={ `/podcast/${podcast.id}`}
                                 state={ { urlImage: podcast.urlImage, 
                                           title: podcast.title, 
@@ -48,7 +47,7 @@ export function PodcastList({setIsLoading}) {
             </div>
           </section>
         ))}
-      </ul>
+      </div>
     </>
   )
 }

@@ -1,5 +1,5 @@
 import { FaSpinner } from 'react-icons/fa';
-//import './LoadingIndicator.css'
+import './LoadingIndicator.css'
 
 export function LoadingIndicator(){
   return (

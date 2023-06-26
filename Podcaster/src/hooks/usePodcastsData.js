@@ -4,39 +4,43 @@ import { setDataLocalStorage } from '../services/utils/setDataLocalStorage';
 import { getDataLocalStorage } from '../services/utils/getDataLocalStorage';
 
 
-const usePodcastsData = (storageKey, fetchDataFunction, ...fetchDataParams) => {
-    const [podcasts, setPodcasts] = useState([]);
-    useEffect(() => {
+const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDataParams) => {
+  const [podcasts, setPodcasts] = useState([]);
+  useEffect(() => {
 
-        const loadPodcasts = async () => {
-            const timeKey = 'lastRequestTime'
-            const parsedPodcasts = getDataLocalStorage(storageKey, timeKey)
-            if (parsedPodcasts) {
-                setPodcasts(parsedPodcasts)
-            } else {
-                try {
-                    const mappingData = await getDataOfApi(fetchDataFunction, fetchDataParams)
-                    setPodcasts(mappingData);
-                    setDataLocalStorage(storageKey,mappingData,timeKey)
+   const loadPodcasts = async () => {
+      const timeKey = 'lastRequestTime'
+      const parsedPodcasts = getDataLocalStorage(storageKey, timeKey)
+      if (parsedPodcasts) {
+        setPodcasts(parsedPodcasts)
+      } else {
+        setIsLoading(true)
+        try {
 
-                } catch (error) {
-                    console.error('Error al cargar los podcasts:', error);
-                }
-            }
-        };
+          const mappingData = await getDataOfApi(fetchDataFunction, fetchDataParams)
+          setPodcasts(mappingData);
+          setDataLocalStorage(storageKey, mappingData, timeKey)
 
-        loadPodcasts();
-    }, [storageKey, fetchDataFunction, ...fetchDataParams]);
 
-    return podcasts;
+        } catch (error) {
+          console.error('Error al cargar los podcasts:', error);
+        }
+        setIsLoading(false)
+      }
+    };
+
+    loadPodcasts();
+  }, [storageKey, fetchDataFunction, ...fetchDataParams]);
+
+  return podcasts;
 };
 
 async function getDataOfApi(fetchDataFunction, fetchDataParams) {
 
-    const data = await fetchDataFunction(...fetchDataParams);
-    const mappingData = mappingTop100Podcast(data.feed.entry)
-    console.log('Los datos han sido actualizados');
-    return mappingData
+  const data = await fetchDataFunction(...fetchDataParams);
+  const mappingData = mappingTop100Podcast(data.feed.entry)
+  console.log('Los datos han sido actualizados');
+  return mappingData
 }
 
 export default usePodcastsData;

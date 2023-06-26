@@ -1,4 +1,4 @@
-import { calculateDateDifference } from "../../utils/utils/dateUtils";
+import { calculateDateDifference } from "../../utils/Date/dateUtils";
 
 export function getDataLocalStorage(storageKey, timeKey) {
 

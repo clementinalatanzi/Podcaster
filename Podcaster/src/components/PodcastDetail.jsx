@@ -4,7 +4,7 @@ import SummaryPodcast from './SummaryPodcastUI';
 import PodcastEpisodes from './PodcastDetailUI';
 import { fetchPodcastData } from '../services/fetchPodcastsData';
 
-export function PodcastDetail() {
+export function PodcastDetail({setIsLoading}) {
 
   const location = useLocation();
   console.log("location", location)
@@ -19,8 +19,9 @@ export function PodcastDetail() {
     
     const fetchPodcastDetail = async () => {
       try {
+        setIsLoading(true)
         const podcastData = await fetchPodcastData(id);
-        
+        setIsLoading(false)
         setPodcastDetail(podcastData);
       } catch (error) {
         // Manejar el error si es necesario

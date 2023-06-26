@@ -1,5 +1,5 @@
 import React from 'react';
-import { calculateTimeInMinutes, formatDate } from '../utils/utils/formatTime';
+import { calculateTimeInMinutes, formatDate } from '../utils/Date/formatTime';
 import { Link } from 'react-router-dom';
 
 const PodcastDetailUI = ({ episodes, urlImage, title, description, id }) => {

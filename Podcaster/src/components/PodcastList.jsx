@@ -5,14 +5,16 @@ import usePodcastsData from '../hooks/usePodcastsData';
 import { fetchTop100Podcasts } from '../services/itunesClient';
 import { Link } from 'react-router-dom';
 
-export function PodcastList() {
+
+export function PodcastList({setIsLoading}) {
  
+  
  const storageKey = 'podcasts';
- const podcasdList = usePodcastsData(storageKey, fetchTop100Podcasts);
+ const podcasdList = usePodcastsData(setIsLoading, storageKey, fetchTop100Podcasts);
 
   const fieldsToFilter = ['title', 'author']; 
   const { filteredData, handleFilterTextChange, filterText } = usePodcastFilter(podcasdList, fieldsToFilter);
-  
+
   return (
     <>
           

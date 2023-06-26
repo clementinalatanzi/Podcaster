@@ -5,17 +5,15 @@ import { calculateDateDifference } from '../utils/Date/dateUtils';
 
 const usePodcastsData = (storageKey, fetchDataFunction, ...fetchDataParams) => {
   const [podcasts, setPodcasts] = useState([]);
-
   useEffect(() => {
+    
     const loadPodcasts = async () => {
-      
       const storedPodcasts = localStorage.getItem(storageKey);
       const parsedPodcasts = storedPodcasts ? JSON.parse(storedPodcasts) : null;
       
       const lastRequestTime = localStorage.getItem('lastRequestTime');
       const currentTime = new Date().getTime();
-
-        
+   
       if (parsedPodcasts && 
           lastRequestTime &&
           calculateDateDifference(currentTime,lastRequestTime)) {

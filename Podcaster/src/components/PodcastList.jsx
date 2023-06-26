@@ -24,7 +24,6 @@ export function PodcastList() {
           placeholder="Buscar podcasts..."
         />
       </div>
-      <h1>PodcastList</h1>
       <ul>
         {filteredData.map((podcast) => (
           <section key={podcast.id} data-testid="podcast">

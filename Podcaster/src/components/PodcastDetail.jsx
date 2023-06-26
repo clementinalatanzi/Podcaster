@@ -35,7 +35,7 @@ export function PodcastDetail() {
     podcastDetail ? (
       <>
         <SummaryPodcast urlImage={urlImage} title={title} description={description} id={id}/>
-        <PodcastEpisodes episodes={podcastDetail.episodes}/>
+        <PodcastEpisodes episodes={podcastDetail.episodes} urlImage={urlImage} title={title} description={description} id={id}/>
       </>) :
       <div></div>
 

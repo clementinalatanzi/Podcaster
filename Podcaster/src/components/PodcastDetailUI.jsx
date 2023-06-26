@@ -1,7 +1,8 @@
 import React from 'react';
 import { calculateTimeInMinutes, formatDate } from '../utils/utils/formatTime';
+import { Link } from 'react-router-dom';
 
-const PodcastDetailUI = ({ episodes }) => {
+const PodcastDetailUI = ({ episodes, urlImage, title, description, id }) => {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr' }}>
       <div>
@@ -18,7 +19,17 @@ const PodcastDetailUI = ({ episodes }) => {
             <tbody>
               {episodes.map(episodio => (
                 <tr key={episodio.episodeGuid}>
-                  <td>{episodio.trackName}</td>
+                  <td>
+                    <Link to={`/podcast/${id}/episode/${episodio.episodeGuid}`}
+                      state={{
+                        urlImage: urlImage,
+                        title: title,
+                        description: description,
+                        id:id
+                      }}>
+                      {episodio.trackName}
+                    </Link>
+                  </td>
                   <td>{formatDate(episodio.releaseDate)}</td>
                   <td>{calculateTimeInMinutes(episodio.trackTimeMillis)}</td>
                 </tr>

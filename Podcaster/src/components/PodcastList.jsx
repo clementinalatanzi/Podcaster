@@ -1,28 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Podcast } from './Podcast';
-import { fetchPodcasts } from '../services/itunesClient';
 import usePodcastFilter from '../hooks/usePodcastFilter';
+import usePodcastsData from '../hooks/usePodcastsData';
 
 export function PodcastList() {
-  const [podcasts, setPodcasts] = useState([]);
+ const podcasdList = usePodcastsData();
 
-
-  useEffect(() => {
-    const loadPodcasts = async () => {
-      try {
-        const data = await fetchPodcasts();
-        setPodcasts(data.feed.entry);
-      } catch (error) {
-        console.error('Error al cargar los podcasts:', error);
-      }
-    };
-
-    loadPodcasts();
-  }, []);
-
-  const fieldsToFilter = ['im:name', 'im:artist']; // Campos para realizar el filtrado
-
-  const { filteredData, handleFilterTextChange, filterText } = usePodcastFilter(podcasts, fieldsToFilter);
+  
+  const fieldsToFilter = ['im:name', 'im:artist']; 
+  const { filteredData, handleFilterTextChange, filterText } = usePodcastFilter(podcasdList, fieldsToFilter);
 
 
   return (
@@ -53,5 +39,5 @@ export function PodcastList() {
         ))}
       </ul>
     </>
-  );
+  )
 }

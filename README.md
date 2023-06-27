@@ -37,6 +37,9 @@ Install the project dependencies by running the following command:
 3. Once the build process is complete, start a local HTTP server to serve the optimized assets. You can use a tool like http-server by running the following command:
 
 `npm run build`
+ 
+ and then
+
 `npx http-server dist`
 
 The application will be running in production mode at http://localhost:8080 by default. Open your web browser and visit this URL to access the application.

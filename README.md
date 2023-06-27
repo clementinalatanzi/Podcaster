@@ -5,17 +5,17 @@
 ## Development Mode
 To run the application in development mode, follow these steps:
 
-Make sure you have Node.js and npm (Node Package Manager) installed on your system. You can download them from the official Node.js website: https://nodejs.org
+1. Make sure you have Node.js and npm (Node Package Manager) installed on your system. You can download them from the official Node.js website: https://nodejs.org
 
-Open a terminal or command prompt and navigate to the root directory of the project.
+2. Open a terminal or command prompt and navigate to the root directory of the project.
 
 Install the project dependencies by running the following command:
 
-npm install
+`npm install`
 
-Start the development server by running the following command:
+3. Start the development server by running the following command:
 
-npm run dev
+`npm run dev`
 
 The application will be running in development mode at http://127.0.0.1:5180
  by default. Open your web browser and visit this URL to access the application.
@@ -24,20 +24,20 @@ The application will be running in development mode at http://127.0.0.1:5180
 ## Production Mode
 To run the application in production mode, follow these steps:
 
-Make sure you have Node.js and npm (Node Package Manager) installed on your system. You can download them from the official Node.js website: https://nodejs.org
+1. Make sure you have Node.js and npm (Node Package Manager) installed on your system. You can download them from the official Node.js website: https://nodejs.org
 
-Open a terminal or command prompt and navigate to the root directory of the project.
+2. Open a terminal or command prompt and navigate to the root directory of the project.
 
 Install the project dependencies by running the following command:
 
 
-npm install
+`npm install`
 
 
-Once the build process is complete, start a local HTTP server to serve the optimized assets. You can use a tool like http-server by running the following command:
+3. Once the build process is complete, start a local HTTP server to serve the optimized assets. You can use a tool like http-server by running the following command:
 
-npm run build
-npx http-server dist
+`npm run build`
+`npx http-server dist`
 
 The application will be running in production mode at http://localhost:8080 by default. Open your web browser and visit this URL to access the application.
 

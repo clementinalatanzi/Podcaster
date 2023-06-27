@@ -1,0 +1,39 @@
+.border-container {
+    border: 1px solid gray;
+    padding: 10px;
+  }
+  
+  .episode-table-list {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .episode-table-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  .episode-table-item.titles {
+    font-weight: bold;
+  }
+  
+  .episode-table-item.even {
+    background-color: #f0f0f0; /* Fondo gris claro para filas pares */
+  }
+  
+  .episode-table-title {
+    flex: 2;
+  }
+  
+  .episode-table-details {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px
+  }
+  
+  .episode-table-item > * {
+    margin-right: 10px; /* Espacio entre cada columna */
+  }
+  

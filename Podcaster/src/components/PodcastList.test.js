@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { MemoryRouter } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { PodcastList } from './PodcastList';
@@ -21,7 +23,9 @@ mockedUsePodcastsData.mockReturnValue([
 
 describe('PodcastList', () => {
   test('renders podcasts correctly', async () => {
-    render(<PodcastList />);
+    render( <MemoryRouter>
+      <PodcastList />
+    </MemoryRouter>);
 
     await waitFor(() => {
       const podcastElements = screen.getAllByTestId('podcast');
@@ -45,14 +49,16 @@ describe('PodcastList', () => {
   });
 
   test('filters podcasts by author and title', async () => {
-    render(<PodcastList />);
+    render(  <MemoryRouter>
+      <PodcastList />
+    </MemoryRouter>);
   
     await waitFor(() => {
       const podcastElements = screen.getAllByTestId('podcast');
       expect(podcastElements).toHaveLength(2);
     });
-  
-    fireEvent.change(screen.getByPlaceholderText('Buscar podcasts...'), { target: { value: 'Podcast 1' } });
+                                                 
+    fireEvent.change(screen.getByPlaceholderText("Filter podcasts..."), { target: { value: 'Podcast 1' } });
   
     await waitFor(() => {
       const podcastElements = screen.getAllByTestId('podcast');
@@ -65,7 +71,7 @@ describe('PodcastList', () => {
       );
     });
   
-    fireEvent.change(screen.getByPlaceholderText('Buscar podcasts...'), { target: { value: 'Author 2' } });
+    fireEvent.change(screen.getByPlaceholderText('Filter podcasts...'), { target: { value: 'Author 2' } });
   
     await waitFor(() => {
       const podcastElements = screen.getAllByTestId('podcast');

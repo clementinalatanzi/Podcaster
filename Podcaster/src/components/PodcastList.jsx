@@ -24,7 +24,7 @@ export function PodcastList({setIsLoading}) {
           type="text"
           value={filterText}
           onChange={handleFilterTextChange}
-          placeholder="Buscar podcasts..."
+          placeholder="Filter podcasts..."
         />
       </div>
       <div className="podcast-grid">

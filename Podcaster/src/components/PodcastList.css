@@ -7,10 +7,13 @@ img {
     margin: 0 auto;
   }
 
-  author {
-    color: #db7d7d;
-    color: var(--text-bright);
+  .azul-button {
+    background-color: rgb(30, 50, 238);
+    color: white;
+    font-weight: bold;
   }
+  
+
   
   /* Centrar horizontalmente */
 

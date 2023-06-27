@@ -9,7 +9,7 @@ export async function fetchTop100Podcasts() {
     const response = await axios.get(BASE_URL + TOP_PODCASTS_ENDPOINT);
     return response.data;
   } catch (error) {
-    console.error('Error al actualizar los podcasts:', error);
+    console.error('Error retrieving podcasts:', error);
     throw error;
   }
 }
@@ -23,7 +23,7 @@ export async function fetchPodcastsDetail(id) {
     const data = await response.json();
     return data;
   } catch (error) {
-    console.error('Error al obtener los detalles del podcast:', error);
+    console.error('Error retrieving podcast details', error);
     throw error;
   }
 }

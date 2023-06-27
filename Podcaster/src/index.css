@@ -227,10 +227,6 @@
     cursor: pointer;
   }
   
-  input,
-  select {
-    display: block;
-  }
   
   [type='checkbox'],
   [type='radio'] {

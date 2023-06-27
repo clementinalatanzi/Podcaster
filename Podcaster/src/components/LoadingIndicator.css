@@ -1,10 +1,9 @@
 .loading-indicator {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    height: 30px;
-    color: #1a3dd8ef;
+    text-align: right;
+  margin-bottom: 20px;
+    color: rgb(30, 50, 238);
   }
+
   
   .spinner-icon {
     animation: spin 1s linear infinite;

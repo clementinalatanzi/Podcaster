@@ -1,4 +1,4 @@
-//import './App.css'
+import './App.css'
 
 import {
   BrowserRouter,
@@ -17,8 +17,11 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   return (
     <BrowserRouter>
+     <div className='block-header'>
      <Header/>
      {isLoading && <LoadingIndicator/>}
+     <div className="horizontal-line"></div>
+     </div>
        <Routes>
         <Route exact path="/" element={<PodcastList setIsLoading={setIsLoading}/>} />
         <Route path="/podcast/:id" element={<PodcastDetail setIsLoading={setIsLoading}/>} />

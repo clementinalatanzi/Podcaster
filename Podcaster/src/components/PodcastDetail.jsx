@@ -8,7 +8,6 @@ import './PodcastDetail.css'
 export function PodcastDetail({setIsLoading}) {
 
   const location = useLocation();
-  console.log("location", location)
   const { urlImage, title, description } = location.state || {};
 
 
@@ -25,7 +24,8 @@ export function PodcastDetail({setIsLoading}) {
         setIsLoading(false)
         setPodcastDetail(podcastData);
       } catch (error) {
-        // Manejar el error si es necesario
+        setIsLoading(false)
+        console.error("Unable to fetch podcast details", error)  
       }
     };
 

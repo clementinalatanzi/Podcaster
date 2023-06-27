@@ -23,7 +23,7 @@ const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDa
 
 
         } catch (error) {
-          console.error('Error al cargar los podcasts:', error);
+          console.error('Error loading podcasts:', error);
         }
         setIsLoading(false)
       }
@@ -38,6 +38,7 @@ const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDa
 async function getDataOfApi(fetchDataFunction, fetchDataParams) {
 
   const data = await fetchDataFunction(...fetchDataParams);
+  console.log("DATA", data)
   const mappingData = mappingTop100Podcast(data.feed.entry)
   console.log('Los datos han sido actualizados');
   return mappingData

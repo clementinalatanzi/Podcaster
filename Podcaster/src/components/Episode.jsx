@@ -5,15 +5,15 @@ import './Episode.css'
 export function Episode({ setIsLoading }) {
 
     const idEpisode = useParams()
-    
-    const location = useLocation();
+     const location = useLocation();
     const { urlImage, title, description, id } = location.state || {};
     
     const podcastDetail = JSON.parse(localStorage.getItem(idEpisode.id));
-    const episodeSelected = podcastDetail.episodes.filter(episode => episode.episodeGuid === idEpisode.epid)
+    const episodeSelected = podcastDetail.episodes.filter(episode =>{ 
+         return episode.trackId.toString() === idEpisode.epid.toString()
+    })
   
-
-    return (
+     return (
         <>
             <div className='episode-container'>
                 <div className='summary-podcast'>

@@ -1,4 +1,8 @@
+.horizontal-line {
+    border-top: 1px solid #f0f0f0;
+    width: 100%;
+  }
 
-.rounded-image {
-    border-radius: 50%;
+  .block-header{
+    padding-bottom: 20px;
   }

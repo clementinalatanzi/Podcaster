@@ -19,6 +19,7 @@ export function PodcastList({setIsLoading}) {
     <>
           
       <div className='filter-container'>
+        <button className="azul-button">{filteredData.length}</button>
         <input
           type="text"
           value={filterText}

@@ -18,9 +18,9 @@ const PodcastDetailUI = ({ episodes, urlImage, title, description, id }) => {
             </thead>
             <tbody>
               {episodes.map(episodio => (
-                <tr key={episodio.episodeGuid}>
+                <tr key={episodio.trackId}>
                   <td>
-                    <Link to={`/podcast/${id}/episode/${episodio.episodeGuid}`}
+                    <Link to={`/podcast/${id}/episode/${episodio.trackId}`}
                       state={{
                         urlImage: urlImage,
                         title: title,

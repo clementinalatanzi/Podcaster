@@ -4,7 +4,7 @@ import { setDataLocalStorage } from '../services/utils/setDataLocalStorage';
 import { getDataLocalStorage } from '../services/utils/getDataLocalStorage';
 
 
-const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDataParams) => {
+const usePodcastsData = (setIsLoading, storageKey, getDataFunction, ...getDataParams) => {
   const [podcasts, setPodcasts] = useState([]);
   useEffect(() => {
 
@@ -17,7 +17,7 @@ const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDa
         setIsLoading(true)
         try {
 
-          const mappingData = await getDataOfApi(fetchDataFunction, fetchDataParams)
+          const mappingData = await getDataOfApi(getDataFunction, getDataParams)
           setPodcasts(mappingData);
           setDataLocalStorage(storageKey, mappingData, timeKey)
 
@@ -30,14 +30,14 @@ const usePodcastsData = (setIsLoading, storageKey, fetchDataFunction, ...fetchDa
     };
 
     loadPodcasts();
-  }, [storageKey, fetchDataFunction, ...fetchDataParams]);
+  }, [storageKey, getDataFunction, ...getDataParams]);
 
   return podcasts;
 };
 
-async function getDataOfApi(fetchDataFunction, fetchDataParams) {
+async function getDataOfApi(getDataFunction, getDataParams) {
 
-  const data = await fetchDataFunction(...fetchDataParams);
+  const data = await getDataFunction(...getDataParams);
   console.log("DATA", data)
   const mappingData = mappingTop100Podcast(data.feed.entry)
   console.log('Los datos han sido actualizados');

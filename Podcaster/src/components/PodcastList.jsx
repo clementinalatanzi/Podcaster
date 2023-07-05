@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PodcastUI } from './PodcastUI';
 import usePodcastFilter from '../hooks/usePodcastFilter';
 import usePodcastsData from '../hooks/usePodcastsData';
-import { fetchTop100Podcasts } from '../services/itunesClient';
+import { getTop100Podcasts} from '../services/itunesClient';
 import { Link } from 'react-router-dom';
 import './PodcastList.css'
 
@@ -10,7 +10,7 @@ export function PodcastList({setIsLoading}) {
  
   
  const storageKey = 'podcasts';
- const podcasdList = usePodcastsData(setIsLoading, storageKey, fetchTop100Podcasts);
+ const podcasdList = usePodcastsData(setIsLoading, storageKey, getTop100Podcasts);
 
   const fieldsToFilter = ['title', 'author']; 
   const { filteredData, handleFilterTextChange, filterText } = usePodcastFilter(podcasdList, fieldsToFilter);

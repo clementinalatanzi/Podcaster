@@ -1,41 +1,16 @@
-import { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import SummaryPodcast from './SummaryPodcastUI';
 import PodcastEpisodes from './PodcastDetailUI';
-import { fetchPodcastData } from '../services/fetchPodcastsData';
 import './PodcastDetail.css'
+import { usePodcastDetailData } from '../hooks/usePodcastDetailData';
+
 
 export function PodcastDetail({setIsLoading}) {
 
   const location = useLocation();
-  const [error, setError] = useState(false)
   const { urlImage, title, description } = location.state || {};
-  
-
   const { id } = useParams();
-
-  const [podcastDetail, setPodcastDetail] = useState(false);
-  
-  
-  useEffect(() => {
-    
-    const fetchPodcastDetail = async () => {
-      try {
-        setIsLoading(true)
-        setError(false)
-        const podcastData = await fetchPodcastData(id);
-        setIsLoading(false)
-        setPodcastDetail(podcastData);
-      } catch (error) {
-        setIsLoading(false)
-        console.error("Unable to fetch podcast details", error)  
-        setError(true)
-      }
-    };
-
-    fetchPodcastDetail();
-  }, []);
-  
+  const {podcastDetail, error} = usePodcastDetailData({setIsLoading,id})
  
   return (
     podcastDetail ? (

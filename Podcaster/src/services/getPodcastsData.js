@@ -1,17 +1,17 @@
 import { getDataLocalStorage } from './utils/getDataLocalStorage';
 import { setDataLocalStorage } from './utils/setDataLocalStorage';
-import { fetchPodcastsDetail } from './itunesClient';
+import { getPodcastsDetail } from './itunesClient';
 
 /**/
 
-export const fetchPodcastData = async (id) => {
+export const getPodcastData = async (id) => {
   try {
     const timeKey = id + 'time'
     const dataLocalStora = getDataLocalStorage(id, timeKey)
     if (dataLocalStora) {
       return dataLocalStora
     }
-    const data = await fetchPodcastsDetail(id);
+    const data = await getPodcastsDetail(id);
     const dataParse = JSON.parse(data.contents);
     const podcastDataDetail = mappingPodcastDetail(dataParse)
     setDataLocalStorage(id, podcastDataDetail, timeKey)
